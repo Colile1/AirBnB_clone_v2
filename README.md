@@ -1,9 +1,17 @@
-This is a README.md file that provides an overview of the HBNB -
+This is a 0x02. AirBnB clone - MySQL
+This is the stage of the AirBnB clone project where build the we build the database storage engine. Done by Colile Sibanda and Kolawole Tella.
+We will use MySQL as the database management system and SQLAlchemy as the Python SQL toolkit and Object-Relational Mapper.
+
+
+
+
+
+The initial parts of this project, the console where done by Ezra Nobrega,  Justin Majetich. The console provides the following functionality:
 
 
 <center> <h1>HBNB - The Console</h1> </center>
 
-This repository contains the initial stage of a student project to build a clone of the AirBnB website. This stage implements a backend interface, or console, to manage program data. Console commands allow the user to create, update, and destroy objects, as well as manage file storage. Using a system of JSON serialization/deserialization, storage is persistent between sessions.
+The initial stage stage was implement a backend interface, or console, to manage program data. Console commands allow the user to create, update, and destroy objects, as well as manage file storage. Using a system of JSON serialization/deserialization, storage is persistent between sessions.
 
 ---
 
