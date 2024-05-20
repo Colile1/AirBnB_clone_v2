@@ -5,7 +5,6 @@ We will use MySQL as the database management system and SQLAlchemy as the Python
 
 
 
-
 The initial parts of this project, the console where done by Ezra Nobrega,  Justin Majetich. The console provides the following functionality:
 
 
