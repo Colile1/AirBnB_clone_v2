@@ -21,9 +21,9 @@ classes = {"Amenity": Amenity, "City": City,
 
 
 class DBStorage:
-    """interaacts with the MySQL database"""
+    """interacts with the MySQL database"""
     __engine = None
-     __session = None
+    __session = None
 
      def __init__(self):
          """Instantiate a DBStorage object"""
@@ -33,10 +33,10 @@ class DBStorage:
          HBNB_MYSQL_DB = getenv('HBNB_MYSQL_DB')
          HBNB_ENV = getenv('HBNB_ENV')
          self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
-                 format(HBNB_MYSQL_USER,
-                     HBNB_MYSQL_PWD,
-                     HBNB_MYSQL_HOST,
-                     HBNB_MYSQL_DB))
+                                        format(HBNB_MYSQL_USER,
+                                        HBNB_MYSQL_PWD,
+                                        HBNB_MYSQL_HOST,
+                                        HBNB_MYSQL_DB))
         if HBNB_ENV == "test":
             Base.metadata.drop_all(self.__engine)
 
@@ -60,6 +60,11 @@ class DBStorage:
         self.__session.commit()
 
     def delete(self, obj=None):
+        """delete from the current database session obj if not None"""
+        if obj is not None:
+            self.__session.delete(obj)
+
+    def reload(self):
         """reloads data from the database"""
         Base.metadata.create_all(self.__engine)
         sess_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
