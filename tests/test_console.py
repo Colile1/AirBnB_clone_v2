@@ -2,7 +2,7 @@
 """Unit tests for console.py"""
 import os
 import sys
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))0  
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import unittest
 from unittest.mock import patch
 from io import StringIO
@@ -89,13 +89,13 @@ class TestHBNBCommand(unittest.TestCase):
     def test_dot_notation_all(self):
         """Test dot notation for all command"""
         with patch('sys.stdout', new=StringIO()) as f:
-            self.console.onecmd("BaseModel.all()")
+            HBNBCommand().onecmd("BaseModel.all()")
             self.assertTrue(isinstance(eval(f.getvalue()), list))
 
     def test_dot_notation_count(self):
         """Test dot notation for count command"""
         with patch('sys.stdout', new=StringIO()) as f:
-            self.console.onecmd("BaseModel.count()")
+            HBNBCommand().onecmd("BaseModel.count()")
             self.assertTrue(f.getvalue().strip().isdigit())
 
     def test_quit_command(self):

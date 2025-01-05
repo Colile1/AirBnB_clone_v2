@@ -25,7 +25,8 @@ class test_fileStorage(unittest.TestCase):
             pass
 
     def test_obj_list_empty(self):
-        """ __objects is initially empty """
+        """__objects is initially empty"""
+        storage.all().clear()
         self.assertEqual(len(storage.all()), 0)
 
     def test_new(self):
