@@ -39,6 +39,40 @@ class TestHBNBCommandCreate(unittest.TestCase):
             output = fake_out.getvalue().strip()
             self.assertIn("** invalid parameter:", output)
 
+    def test_create_state_with_valid_params(self):
+        """Test creating a State with valid parameters."""
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            self.cmd.do_create('State name="California"')
+            output = fake_out.getvalue().strip()
+            self.assertTrue(output)  # Check that an ID is printed
+
+    def test_create_place_with_valid_params(self):
+        """Test creating a Place with valid parameters."""
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            self.cmd.do_create('Place city_id="0001" user_id="0001" name="My_little_house" number_rooms=4 number_bathrooms=2 max_guest=10 price_by_night=300 latitude=37.773972 longitude=-122.431297')
+            output = fake_out.getvalue().strip()
+            self.assertTrue(output)  # Check that an ID is printed
+
+    def test_create_invalid_string_param(self):
+        """Test creating an object with an invalid string parameter."""
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            self.cmd.do_create('State name="Invalid"Invalid"')
+            output = fake_out.getvalue().strip()
+            self.assertIn("** invalid parameter:", output)
+
+    def test_create_invalid_float_param(self):
+        """Test creating an object with an invalid float parameter."""
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            self.cmd.do_create('Place price_by_night="not_a_float"')
+            output = fake_out.getvalue().strip()
+            self.assertIn("** invalid parameter:", output)
+
+    def test_create_invalid_integer_param(self):
+        """Test creating an object with an invalid integer parameter."""
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            self.cmd.do_create('Place number_rooms="not_an_integer"')
+            output = fake_out.getvalue().strip()
+            self.assertIn("** invalid parameter:", output)
 
 if __name__ == '__main__':
     unittest.main()

@@ -114,8 +114,8 @@ class HBNBCommand(cmd.Cmd):
             return
         obj = HBNBCommand.classes[arg_list[0]]()
 
-        # catch pattern <key name>=<value>
-        pattern = re.compile(r'(\w+)="([^"]*?)"|(\w+)=(\d+\.\d+|\d+)|(\w+)="([^"]*?)"')
+        # Updated regex pattern to catch <key name>=<value>
+        pattern = re.compile(r'(\w+)="([^"\\]*(?:\\.[^"\\]*)*)"|(\w+)=(\d+\.\d+|\d+)|(\w+)="([^"\\]*(?:\\.[^"\\]*)*)"')
         arg_list = arg_list[1:]
         for param in arg_list:
             match = pattern.match(param)
