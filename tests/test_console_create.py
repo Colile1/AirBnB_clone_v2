@@ -3,7 +3,9 @@ from io import StringIO
 import sys
 from console import HBNBCommand
 
+
 class TestHBNBCommandCreate(unittest.TestCase):
+
     def setUp(self):
         self.cmd = HBNBCommand()
         self.cmd.prompt = ''
@@ -35,6 +37,7 @@ class TestHBNBCommandCreate(unittest.TestCase):
             self.cmd.do_create('State invalid_param')
             output = fake_out.getvalue().strip()
             self.assertIn("** invalid parameter:", output)
+
 
 if __name__ == '__main__':
     unittest.main()
