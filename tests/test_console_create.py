@@ -2,6 +2,7 @@ import unittest
 from io import StringIO
 import sys
 from console import HBNBCommand
+from unittest.mock import patch
 
 
 class TestHBNBCommandCreate(unittest.TestCase):

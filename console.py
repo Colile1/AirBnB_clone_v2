@@ -113,19 +113,24 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
         obj = HBNBCommand.classes[arg_list[0]]()
-        print(obj.id)
 
         # catch pattern <key name>=<value>
-        pattern = re.compile(r'^(\w+)="?(([\w.@,-]|\\")+)"?,?$')
+        pattern = re.compile(r'(\w+)="([^"]*?)"|(\w+)=(\d+\.\d+|\d+)|(\w+)="([^"]*?)"')
         arg_list = arg_list[1:]
         for param in arg_list:
-
-            match = pattern.search(param)
+            match = pattern.match(param)
             if not match:
                 continue
 
-            key = match.group(1)
-            val = match.group(2).strip('"').replace('_', ' ')
+            if match.group(1):  # String
+                key = match.group(1)
+                val = match.group(2).replace('_', ' ')
+            elif match.group(3):  # Float or Integer
+                key = match.group(3)
+                val = float(match.group(4)) if match.group(4).count('.') == 1 else int(match.group(4))
+            else:
+                continue
+
             if key in HBNBCommand.types.keys():
                 try:
                     setattr(obj, key, HBNBCommand.types[key](val))
@@ -135,6 +140,7 @@ class HBNBCommand(cmd.Cmd):
                 setattr(obj, key, str(val))
 
         obj.save()
+        print(obj.id)
 
     def help_create(self):
         """ Help information for the create method """
